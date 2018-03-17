@@ -20,6 +20,7 @@ module Easybuy
     config.generators do |g|
       g.assets false
       g.test_framework false
+      g.skip_routes true # 不生成路由
     end
   end
 end

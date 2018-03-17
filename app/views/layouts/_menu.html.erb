@@ -27,7 +27,7 @@
         <li><a href="#">购物车</a></li>
         <% unless logged_in? %>
           <li><a href="<%= new_user_path %>">注册</a></li>
-          <li><a href="<%= new_session_path %>">登录</a></li>
+          <li><a href="<%= login_path %>">登录</a></li>
         <% else %>
           <li><a href="#">欢迎你，<%= current_user.username %></a></li>
           <li><%= link_to "退出", logout_path, method: :delete %></li>
