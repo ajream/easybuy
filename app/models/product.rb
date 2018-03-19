@@ -8,12 +8,17 @@ class Product < ApplicationRecord
   validates :msrp, presence: { message: "MSRP不能为空。" }
   validates :msrp, numericality: { message: "MSRP必须为数字。" }, if: proc { |product| product.msrp.present? }
   validates :price, presence: { message: "价格不能为空。" }
-  validates :price, numericality: { only_integer: true, message: "价格必须为数字。" }, if: proc { |product| product.msrp.present? }
+  validates :price, numericality: { message: "价格必须为数字。" }, if: proc { |product| product.msrp.present? }
   validates :description, presence: { message: "描述不能为空。" }
 
   belongs_to :category, optional: true
 
   before_create :set_default_attrs
+
+  module Status
+    On = 'on'
+    Off = 'off'
+  end
 
   private
   def set_default_attrs
