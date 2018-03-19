@@ -8,10 +8,11 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root 'sessions#new'
-    resources :categories
     get '/login', to: 'sessions#new'
     post '/login', to: 'sessions#create'
     delete '/logout' => 'sessions#destroy', as: :logout
+    resources :categories
+    resources :products
   end
 
 end
