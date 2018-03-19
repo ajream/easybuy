@@ -1,37 +1,57 @@
 class Admin::CategoriesController < Admin::BaseController
+  before_action :find_root_categories, only: [:new, :create, :edit, :update]
+  before_action :find_category, only: [:edit, :update, :destroy]
+
   def index
     @categories = Category.roots.page(params[:page] || 1).per_page(params[:per_page] || 10).order(id: "DESC")
   end
 
   def new
     @category = Category.new
-    @root_categories = Category.roots.order(id: "DESC")
   end
 
   def create
     @category = Category.new(category_params)
-    @root_categories = Category.roots.order(id: "DESC")
 
     if @category.save
       flash[:notice] = "保存成功。"
       redirect_to admin_categories_path
     else
-      render action: :new
+      render :new
     end
   end
 
   def edit
-    
+    render :new
   end
 
-  def updaet
-    
+  def update
+    if @category.update(category_params)
+      flash[:notice] = '修改成功。'
+      redirect_to admin_categories_path
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    if @category.destroy
+      flash[:notice] = '删除成功。'
+      redirect_to admin_categories_path
+    else
+      flash[:notice] = '删除失败。'
+       redirect_to :back
+    end
   end
 
   private
-  # def find_category
-  #   @category = 
-  # end
+  def find_root_categories
+    @root_categories = Category.roots.order(id: "DESC")
+  end
+
+  def find_category
+    @category = Category.find(params[:id])
+  end
 
   def category_params
     params.require(:category).permit!
