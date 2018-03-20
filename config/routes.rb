@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout' => 'sessions#destroy', as: :logout
 
+  resources :categories, only: :show
+  resources :products, only: :show
+
   namespace :admin do
     root 'sessions#new'
     get '/login', to: 'sessions#new'

@@ -13,8 +13,11 @@ class Product < ApplicationRecord
 
   belongs_to :category, optional: true
   has_many :product_images, -> { order(weight: 'DESC') }, dependent: :destroy
+  has_one :main_product_image, -> { order(weight: "DESC") }, class_name: :ProductImage
 
   before_create :set_default_attrs
+
+  scope :onsale, -> { where(status: Status::On) }
 
   module Status
     On = 'on'

@@ -8,6 +8,15 @@ class Category < ApplicationRecord
 
   before_validation :corrent_ancestry
 
+  def self.group_data
+    self.roots.order("weight DESC").inject([]) do |result, parent|
+      row = []
+      row << parent
+      row << parent.children.order("weight DESC")
+      result << row
+    end
+  end
+
   private
   def corrent_ancestry
     self.ancestry = nil if self.ancestry.blank?
