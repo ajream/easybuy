@@ -1,0 +1,11 @@
+class ProductImage < ApplicationRecord
+  belongs_to :product
+
+  has_attached_file :image, styles: { 
+    thumb: "100 x100>",
+    medium: "300x300>", 
+    big: "960x"
+  }, default_url: "/images/:style/missing.png"
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
+  validates_attachment_size :image, in: 0..10.megabytes
+end
