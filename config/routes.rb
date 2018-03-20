@@ -12,7 +12,9 @@ Rails.application.routes.draw do
     post '/login', to: 'sessions#create'
     delete '/logout' => 'sessions#destroy', as: :logout
     resources :categories
-    resources :products
+    resources :products do
+      resources :product_images, only: [:index, :create, :update, :destroy]
+    end
   end
 
 end
