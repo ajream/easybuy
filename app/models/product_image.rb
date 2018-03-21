@@ -2,7 +2,7 @@ class ProductImage < ApplicationRecord
   belongs_to :product
 
   has_attached_file :image, styles: { 
-    thumb: "100 x100>",
+    thumb: "100x100>",
     medium: "300x300>", 
     big: "960x"
   }
