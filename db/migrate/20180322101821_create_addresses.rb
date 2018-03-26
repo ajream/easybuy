@@ -3,7 +3,7 @@ class CreateAddresses < ActiveRecord::Migration[5.1]
     create_table :addresses do |t|
       t.integer :user_id
       t.string :address_type, comment: "地址类型"
-      t.string :contract_name, :mobile_phone, :address, :zipcode
+      t.string :contact_name, :telephone, :address, :zipcode
 
       t.timestamps
     end

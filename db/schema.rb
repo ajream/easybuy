@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(version: 20180322101934) do
   create_table "addresses", force: :cascade do |t|
     t.integer "user_id"
     t.string "address_type", comment: "地址类型"
-    t.string "contract_name"
-    t.string "mobile_phone"
+    t.string "contact_name"
+    t.string "telephone"
     t.string "address"
     t.string "zipcode"
     t.datetime "created_at", null: false

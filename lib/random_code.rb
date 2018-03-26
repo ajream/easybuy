@@ -7,7 +7,7 @@ module RandomCode
       token
     end
 
-    def generate_cellphone_token len = 6
+    def generate_mobile_phone_token len = 6
       a = lambda { (0..9).to_a.sample }
       token = ""
       len.times { |t| token << a.call.to_s }

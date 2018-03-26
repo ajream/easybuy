@@ -4,13 +4,21 @@ class ApplicationController < ActionController::Base
   before_action :set_browser_uuid
 
   protected
+  def auth_user
+    unless logged_in?
+      flash[:notice] = "请登录"
+      redirect_to login_path
+    end
+  end
+  
   def fetch_home_data
     @categories = Category.group_data
-    @shopping_carts_count = ShoppingCart.by_user_uuid(session[:user_uuid]).count
+    @shopping_cart_count = ShoppingCart.by_user_uuid(session[:user_uuid]).count
   end
 
   def set_browser_uuid
     uuid = cookies[:user_uuid]
+
     unless uuid
       if logged_in?
         uuid = current_user.uuid
