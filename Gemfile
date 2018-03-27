@@ -36,6 +36,7 @@ gem 'sorcery', '~> 0.11.0'
 gem 'ancestry', '~> 3.0'
 gem 'will_paginate', '~> 3.1'
 gem 'paperclip', '~> 6.0.0'
+gem 'rest-client', '~> 2.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
