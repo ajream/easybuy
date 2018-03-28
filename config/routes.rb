@@ -48,4 +48,6 @@ Rails.application.routes.draw do
     resources :addresses, only: [:index]
   end
 
+  resources :telephone_tokens, only: :create
+
 end
